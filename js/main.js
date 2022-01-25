@@ -29,35 +29,39 @@
 
         if (check) {
             var body = {
-                'name': $('input[name=name]').val(),
-                'email': $('input[name=email]').val(),
+                // 'name': $('input[name=name]').val(),
+                // 'email': $('input[name=email]').val(),
                 'service': $('select[name=service]').val(),
                 'message': $('textarea[name=message]').val(),
             }
             console.log("body", body);
-            $.ajax({
-                url: "/core/send.php",
-                type: "POST",
-                data: JSON.stringify(body),
-                dataType: "json",    
-                contentType: 'application/json; charset=utf-8',
-                // success: function (result) {
-                //     $('#send').attr("disabled");
-                // },
-                // error: function(err){
-                //     console.error(err);
-                // }
-                complete: function (xhr, status) {
-                    if (status === 'error' || !xhr.responseText) {
-                        console.log(error);
-                    }
-                    else {
-                        btn.addClass("bg-success");
-                        btn.html("Email inviata");
-                        btn.attr("disabled","disabled");
-                    }
-                }        
-            });
+            // $.ajax({
+            //     url: "/core/send.php",
+            //     type: "POST",
+            //     data: JSON.stringify(body),
+            //     dataType: "json",    
+            //     contentType: 'application/json; charset=utf-8',
+            //     // success: function (result) {
+            //     //     $('#send').attr("disabled");
+            //     // },
+            //     // error: function(err){
+            //     //     console.error(err);
+            //     // }
+            //     complete: function (xhr, status) {
+            //         if (status === 'error' || !xhr.responseText) {
+            //             console.log(error);
+            //         }
+            //         else {
+            //             btn.addClass("bg-success");
+            //             btn.html("Email inviata");
+            //             btn.attr("disabled","disabled");
+            //         }
+            //     }        
+            // });
+            const str = 'mailto:dabrunzo.a+site@gmail.com?subject='+body.service+'&body='+body.message;
+            window.open(str);
+            btn.addClass("bg-success");
+            btn.html('<i class="fa fa-check" aria-hidden="true"></i>');
         }
 
 
